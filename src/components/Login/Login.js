@@ -38,7 +38,7 @@ class Login extends Component {
                     Swal.showLoading();
                 },
                 onClose: () => {
-                    this.props.onLoginSuccess();
+                    this.props.onLoginTeruna();
 
                     Swal.fire({
                         position: 'center',
