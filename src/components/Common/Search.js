@@ -27,6 +27,7 @@ class Search extends Component {
     }
 
     render() {
+     
         return (
             <form className={styles.rtl}>
                 <h4 htmlFor="text">Pencarian</h4>
