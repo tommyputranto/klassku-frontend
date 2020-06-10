@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import TerunaHome from '../Teruna/TerunaHome.js';
 import Login from '../Login/Login.js';
 
 class App extends Component {
@@ -30,7 +30,7 @@ class App extends Component {
       case "teruna":
         //show page if loggedIn
         // <Dashboard onLogoutSuccess={this.onLogoutSuccess} />
-        console.log("login teruna");
+        showPage = <TerunaHome />;
 
         break;
 

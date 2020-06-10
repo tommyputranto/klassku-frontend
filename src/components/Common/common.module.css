@@ -1,0 +1,34 @@
+.center {
+    color: rgb(2, 12, 12);
+    padding: 12px;
+    font-family: Arial;
+    text-align: center;
+  }
+
+  .rtl {
+    display: flex;
+}
+
+form {
+    overflow: hidden;
+    padding: 12px;
+}
+ 
+h4 {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.half{
+  width:30%;
+  float: left;
+}
+input {
+  margin: 20px;
+  height: 100%;
+  float: center;
+}
+
+.search_btn {
+  margin-top: 20px;
+}
