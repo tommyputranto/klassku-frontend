@@ -19,10 +19,16 @@ h4 {
   margin-top: 30px;
 }
 
-.half{
+.half_left{
   width:30%;
   float: left;
 }
+
+.half_right{
+  width:30%;
+  float: right;
+}
+
 input {
   margin: 20px;
   height: 100%;
@@ -32,3 +38,11 @@ input {
 .search_btn {
   margin-top: 20px;
 }
+
+.select {
+  margin-top: 20px;
+  margin-right: 12px;
+  padding-left: 12px;
+
+}
+
