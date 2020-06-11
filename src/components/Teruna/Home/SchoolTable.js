@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import styles from '../Common/common.module.css';
+import styles from '../../Common/common.module.css';
 
 
 class SchoolTable extends Component {
     render() {
         // const { employeesData, handleEditClick, handleDelete } = this.props;
-        const { SchoolsData } = this.props;
+        const { SchoolsData, handleUpdateClick } = this.props;
 
         for (let i = 0; i < SchoolsData.length; i++) {
             SchoolsData[i].id = i + 1;
@@ -46,7 +46,7 @@ class SchoolTable extends Component {
                                         <td>{school.status} </td>
                                         <td className="text-right">
                                             <button
-                                                // onClick={() => handleEditClick(employee.id)}
+                                                onClick={() => handleUpdateClick()}
                                                 className="button muted-button">
                                                 Update
                                         </button>
@@ -62,7 +62,7 @@ class SchoolTable extends Component {
                                 ))
                             ) : (
                                     <tr>
-                                        <td colSpan={7}>No Employees</td>
+                                        <td colSpan={7}>No Data</td>
                                     </tr>
                                 )}
                         </tbody>

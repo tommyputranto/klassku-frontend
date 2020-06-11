@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import TerunaHome from '../Teruna/TerunaHome.js';
+import TerunaHome from '../Teruna/Home/TerunaHome.js';
 import Login from '../Login/Login.js';
 
 class App extends Component {
