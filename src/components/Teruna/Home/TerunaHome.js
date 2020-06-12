@@ -7,6 +7,7 @@ import { SCHOOLS_DUMMY } from '../../../data/dataList';
 import Select from 'react-select';
 import { filterStatusData } from '../../../data/dataList';
 import UpdatePage from '../Update/UpdatePage.js';
+import OrderPage from '../Order/OrderPage.js';
 
 class TerunaHome extends Component {
     constructor(props) {
@@ -15,10 +16,12 @@ class TerunaHome extends Component {
             schoolsData: SCHOOLS_DUMMY,
             options: filterStatusData,
             updateClicked: false,
+            orderClicked: false
         };
         this.handleUpdateClick = this.handleUpdateClick.bind(this);
         this.handleUpdateDone = this.handleUpdateDone.bind(this);
-
+        this.handleOrderBack = this.handleOrderBack.bind(this);
+        this.handleOrderClick = this.handleOrderClick.bind(this);
 
     }
 
@@ -30,11 +33,20 @@ class TerunaHome extends Component {
         this.setState({ updateClicked: false });
     }
 
+    handleOrderClick() {
+        this.setState({ orderClicked: true });
+    }
+
+    handleOrderBack() {
+        this.setState({ orderClicked: false });
+    }
+
     render() {
         const {
             schoolsData,
             options,
-            updateClicked
+            updateClicked,
+            orderClicked
         } = this.state;
         let showPage = (
             <div>
@@ -53,12 +65,20 @@ class TerunaHome extends Component {
                 <SchoolTable
                     SchoolsData={schoolsData}
                     handleUpdateClick={this.handleUpdateClick}
+                    handleOrderClick={this.handleOrderClick}
                 />
             </div>
         );
         if (updateClicked) {
             showPage = <UpdatePage
                 handleUpdateDone={this.handleUpdateDone}
+            />
+        }
+
+
+        if(orderClicked){
+            showPage = <OrderPage
+            handleOrderBack={this.handleOrderBack}
             />
         }
         return (

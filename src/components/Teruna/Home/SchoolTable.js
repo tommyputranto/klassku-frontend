@@ -5,7 +5,7 @@ import styles from '../../Common/common.module.css';
 class SchoolTable extends Component {
     render() {
         // const { employeesData, handleEditClick, handleDelete } = this.props;
-        const { SchoolsData, handleUpdateClick } = this.props;
+        const { SchoolsData, handleUpdateClick, handleOrderClick } = this.props;
 
         for (let i = 0; i < SchoolsData.length; i++) {
             SchoolsData[i].id = i + 1;
@@ -53,7 +53,7 @@ class SchoolTable extends Component {
                                         </td>
                                         <td className="text-left">
                                             <button
-                                                // onClick={() => handleDelete(employee.id)}
+                                                onClick={() => handleOrderClick()}
                                                 className="button muted-button">
                                                 Order
                                         </button>
