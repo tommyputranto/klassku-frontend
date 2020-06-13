@@ -9,6 +9,7 @@ import { filterStatusData } from '../../../data/dataList';
 import UpdatePage from '../Update/UpdatePage.js';
 import OrderPage from '../Order/OrderPage.js';
 
+
 class TerunaHome extends Component {
     constructor(props) {
         super(props);
@@ -22,7 +23,6 @@ class TerunaHome extends Component {
         this.handleUpdateDone = this.handleUpdateDone.bind(this);
         this.handleOrderBack = this.handleOrderBack.bind(this);
         this.handleOrderClick = this.handleOrderClick.bind(this);
-
     }
 
     handleUpdateClick() {
