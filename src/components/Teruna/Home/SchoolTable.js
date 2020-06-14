@@ -1,15 +1,30 @@
 import React, { Component } from 'react';
 import styles from '../../Common/common.module.css';
+import { filterStatusData } from '../../../data/dataList';
 
 
 class SchoolTable extends Component {
-    render() {
-        // const { employeesData, handleEditClick, handleDelete } = this.props;
-        const { SchoolsData, handleUpdateClick, handleOrderClick } = this.props;
 
+
+    setStatus(){
+        const { SchoolsData } = this.props;
+ 
         for (let i = 0; i < SchoolsData.length; i++) {
-            SchoolsData[i].id = i + 1;
+            let status = filterStatusData.filter( function (data) {
+                return data.value === SchoolsData[i].status
+              }).map(function(data){
+                  if (data.value === SchoolsData[i].status ){
+                      return data.label;
+                  }
+                  return "";
+              });
+            SchoolsData[i].status = status;
         }
+    }
+
+    render() {
+        const { SchoolsData, handleUpdateClick, handleOrderClick } = this.props;
+        this.setStatus()
 
         const formatter = new Intl.NumberFormat('en-US', {
             style: 'currency',
@@ -43,7 +58,8 @@ class SchoolTable extends Component {
                                         <td>{school.schoolName}</td>
                                         <td>{school.district}</td>
                                         <td>{school.city}</td>
-                                        <td>{school.status} </td>
+                                        <td>{school.status}</td>
+                                        
                                         <td className="text-right">
                                             <button
                                                 onClick={() => handleUpdateClick()}

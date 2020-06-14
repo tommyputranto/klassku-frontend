@@ -8,15 +8,16 @@ class App extends Component {
     super(props);
 
     this.state = {
-      isLoggedIn: ""
+      isLoggedIn: "",
+      id: ""
     };
 
-    this.onLoginSuccess = this.onLoginTeruna.bind(this);
+    this.onLoginTeruna = this.onLoginTeruna.bind(this);
     this.onLogoutSuccess = this.onLogoutSuccess.bind(this);
   }
 
-  onLoginTeruna() {
-    this.setState({ isLoggedIn: "teruna" });
+  onLoginTeruna(role, id) {
+    this.setState({ isLoggedIn: role , id: id});
   }
 
   onLogoutSuccess() {
@@ -24,18 +25,21 @@ class App extends Component {
   }
 
   render() {
-    const { isLoggedIn } = this.state;
+    const { isLoggedIn, id } = this.state;
     let showPage;
     switch (isLoggedIn) {
-      case "teruna":
+      case "leader":
         //show page if loggedIn
         // <Dashboard onLogoutSuccess={this.onLogoutSuccess} />
-        showPage = <TerunaHome />;
+
+        break;
+      case "teruna":
+        showPage = <TerunaHome id= {id} />;
 
         break;
 
       default:
-        showPage = <Login onLoginTeruna={this.onLoginSuccess} />;
+        showPage = <Login onLoginTeruna={this.onLoginTeruna} />;
     }
 
     return (

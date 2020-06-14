@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Swal from 'sweetalert2';
 import axios from 'axios';
+import { URL } from '../../data/helper';
 
 class Login extends Component {
     constructor(props) {
@@ -29,7 +30,7 @@ class Login extends Component {
             userEnteredPassword
         } = this.state;
 
-        this.checkData()
+        this.checkLogin()
 
         // if (
         //     userEnteredEmail === adminEmail &&
@@ -41,7 +42,7 @@ class Login extends Component {
         //             Swal.showLoading();
         //         },
         //         onClose: () => {
-                 
+
         //         }
         //     });
         // } else {
@@ -62,21 +63,20 @@ class Login extends Component {
         // }
     }
 
-    checkData(){
+    checkLogin() {
         Swal.showLoading();
         const options = {
-            url: 'http://localhost:8080/login',
+            url: URL+'login',
             method: 'POST',
             data: {
-              id: this.state.userEnteredEmail,
-              pass: this.state.userEnteredPassword
+                id: this.state.userEnteredEmail,
+                pass: this.state.userEnteredPassword
             }
-          };
-          
-          axios(options)
-            .then(response => {
-                this.props.onLoginTeruna();
+        };
 
+        axios(options)
+            .then(response => {
+                this.props.onLoginTeruna(response.data.role, response.data.id);
                 Swal.fire({
                     position: 'center',
                     type: 'success',
@@ -96,14 +96,14 @@ class Login extends Component {
     }
 
     componentDidMount() {
-       
-      }
-    
-  
+
+    }
+
+
     render() {
         return (
             <div className="small-container">
-                
+
                 <form>
                     <h1>Login</h1>
                     <label htmlFor="email">Email</label>
