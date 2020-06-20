@@ -11,9 +11,9 @@ class UpdatePage extends Component {
         super(props);
         this.state = {
             fiter: filterStatusData,
-            substatus: []
+            substatus: [],
+            valueFilter: ""
         };
-
     }
 
     handleFilterChange(value) {
@@ -75,12 +75,13 @@ class UpdatePage extends Component {
             }).map(function (data) {
                 if (data.key === substatus[i]) {
                     return data.value;
+                }else{
+                    return "-";
                 }
-                return "";
             });
             substatus[i] = status
         }
-        this.setState({ substatus: substatus });
+        this.setState({ substatus: substatus, valueFilter: value.value });
     }
 
 
@@ -88,13 +89,15 @@ class UpdatePage extends Component {
     render() {
         const {
             fiter,
-            substatus
+            substatus,
+            valueFilter
         } = this.state;
 
         const {
-            handleUpdateDone
+            handleUpdateDone,
+            data
         } = this.props;
-
+        
         let test = substatus.map(st => {
             return (
                 <div className={styles.form_50_2}>
@@ -117,33 +120,29 @@ class UpdatePage extends Component {
                             <input
                                 id="npsn"
                                 type="text"
-                                value="3"
-                                readonly
+                                value={data.npsn}
                             />
                             <label htmlFor="schoolName">Nama Sekolah</label>
                             <input
                                 id="schoolName"
                                 type="text"
-                                value="gfg3"
-                                readonly
+                                value={data.schoolName}
                             />
                             <label htmlFor="district">Kecamatan</label>
                             <input
                                 id="district"
                                 type="text"
-                                value="3"
-                                readonly
+                                value={data.district}
                             />
                             <label htmlFor="address">Alamat</label>
                             <input
                                 id="address"
                                 type="text"
-                                value="3"
-                                readonly
+                                value={data.address}
                             />
                             <input
                                 type="button"
-                                onClick={handleUpdateDone}
+                                onClick={() => handleUpdateDone(data.npsn, valueFilter)}
                                 value="Update"
                                 className={styles.button_form}
                             />
@@ -163,7 +162,7 @@ class UpdatePage extends Component {
                         placeholder='Filter status'
                         className={styles.select}
                         isSearchable={false}
-                        defaultValue={fiter[0]}
+                        // defaultValue={fiter[0]}
                         options={fiter} />
                 </div>
             </div>

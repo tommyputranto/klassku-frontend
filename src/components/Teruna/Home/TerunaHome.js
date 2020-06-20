@@ -31,18 +31,18 @@ class TerunaHome extends Component {
         this.handleUpdateDone = this.handleUpdateDone.bind(this);
         this.handleOrderBack = this.handleOrderBack.bind(this);
         this.handleOrderClick = this.handleOrderClick.bind(this);
-        
+
 
     }
 
-    handleUpdateClick() {
-        this.setState({ updateClicked: true });
+    handleUpdateClick(data) {
+        this.setState({ updateClicked: true, schoolsData: data });
     }
 
-    handleUpdateDone() {
+    handleUpdateDone(npsn, status_sell) {
+        this.updateData(npsn, status_sell)
         this.getData()
         this.setState({ updateClicked: false });
-
     }
 
     handleOrderClick() {
@@ -57,32 +57,49 @@ class TerunaHome extends Component {
         this.getData()
     }
 
+    updateData(npsn, status_sell) {
 
-    getData(){
+        const options = {
+            url: URL + 'update/' + npsn,
+            method: 'POST',
+            data: {
+                status_sell: status_sell
+            }
+        };
+
+
+        axios(options)
+            .then(
+                this.getData()
+            ).catch((error) => {
+
+            });
+    }
+
+    getData() {
         const {
             id
         } = this.props;
         const options = {
-            url: URL+'home/'+id,
+            url: URL + 'home/' + id,
             method: 'GET'
-            
+
         };
 
         axios(options)
-            .then( parseJson => parseJson.data.data.map(data => (
-                {
-                    npsn:`${data.npsn}`,
+            .then(parseJson => parseJson.data.data.map(data => ({
+                    npsn: `${data.npsn}`,
                     schoolName: `${data.school_name}`,
                     district: `${data.district}`,
                     city: `${data.city}`,
-                    status: `${data.status_sell}`
+                    status: `${data.status_sell}`,
+                    address: `${data.address}`
                 }
-            )
-            )
-            ).then(data=> {
-                this.setState ({schoolsData: data})
+            ))
+            ).then(data => {
+                this.setState({ schoolsData: data })
             }).catch((error) => {
-                
+
             });
     }
 
@@ -94,8 +111,7 @@ class TerunaHome extends Component {
             updateClicked,
             orderClicked
         } = this.state;
-
-        
+       
         let showPage = (
             <div className={styles.center}>
                 <HeaderTitle title="Teruna Home" />
@@ -120,13 +136,14 @@ class TerunaHome extends Component {
         if (updateClicked) {
             showPage = <UpdatePage
                 handleUpdateDone={this.handleUpdateDone}
+                data={schoolsData}
             />
         }
 
 
-        if(orderClicked){
+        if (orderClicked) {
             showPage = <OrderPage
-            handleOrderBack={this.handleOrderBack}
+                handleOrderBack={this.handleOrderBack}
             />
         }
         return (

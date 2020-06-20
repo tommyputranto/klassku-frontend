@@ -16,7 +16,7 @@ class SchoolTable extends Component {
                   if (data.value === SchoolsData[i].status ){
                       return data.label;
                   }
-                  return "";
+                  return "-";
               });
             SchoolsData[i].status = status;
         }
@@ -58,11 +58,11 @@ class SchoolTable extends Component {
                                         <td>{school.schoolName}</td>
                                         <td>{school.district}</td>
                                         <td>{school.city}</td>
-                                        <td>{school.status}</td>
+                                        <td>{school.status.length === 0 ? "-" : school.status}</td>
                                         
                                         <td className="text-right">
                                             <button
-                                                onClick={() => handleUpdateClick()}
+                                                onClick={() => handleUpdateClick(SchoolsData[i])}
                                                 className="button muted-button">
                                                 Update
                                         </button>
