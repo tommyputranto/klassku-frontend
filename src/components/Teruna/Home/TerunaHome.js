@@ -40,7 +40,9 @@ class TerunaHome extends Component {
     }
 
     handleUpdateDone() {
+        this.getData()
         this.setState({ updateClicked: false });
+
     }
 
     handleOrderClick() {
@@ -55,9 +57,13 @@ class TerunaHome extends Component {
         this.getData()
     }
 
+
     getData(){
+        const {
+            id
+        } = this.props;
         const options = {
-            url: URL+'home/test',
+            url: URL+'home/'+id,
             method: 'GET'
             
         };
@@ -91,7 +97,7 @@ class TerunaHome extends Component {
 
         
         let showPage = (
-            <div>
+            <div className={styles.center}>
                 <HeaderTitle title="Teruna Home" />
                 <div className={styles.half_left}>
                     <Search />
