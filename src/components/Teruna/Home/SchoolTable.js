@@ -60,20 +60,22 @@ class SchoolTable extends Component {
                                         <td>{school.city}</td>
                                         <td>{school.status.length === 0 ? "-" : school.status}</td>
                                         
-                                        <td className="text-right">
+                                        <td className="text-center">
                                             <button
                                                 onClick={() => handleUpdateClick(SchoolsData[i])}
                                                 className="button muted-button">
                                                 Update
                                         </button>
                                         </td>
-                                        <td className="text-left">
+
+                                        {/* <td className="text-left">
                                             <button
                                                 onClick={() => handleOrderClick()}
                                                 className="button muted-button">
                                                 Order
                                         </button>
-                                        </td>
+                                        </td> */}
+
                                     </tr>
                                 ))
                             ) : (
