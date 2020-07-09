@@ -114,7 +114,7 @@ class TerunaHome extends Component {
        
         let showPage = (
             <div className={styles.center}>
-                <HeaderTitle title="Teruna Home" />
+                <HeaderTitle title="Trainer Home" />
                 <div className={styles.half_left}>
                     <Search />
                 </div>
