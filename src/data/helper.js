@@ -1,3 +1,3 @@
-const URL = "http://localhost:8080/";
+const URL = "https://api.klassku.jdn.co.id/";
 
 export { URL };
