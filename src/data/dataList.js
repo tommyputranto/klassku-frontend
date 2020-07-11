@@ -16,6 +16,7 @@ const SCHOOLS_DUMMY = [
 ];
 
 
+
 const filterStatusData = [
   { value: 'S0', label: 'S0-Belum mendatangi sekolah (default)' },
   { value: 'S1', label: 'S1-Sudah mendatangi sekolah tapi belum berhasil bertemu Kepsek' },
